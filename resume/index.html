@@ -36,31 +36,18 @@
 
   <article>
     <header>
-      <h3>Spotify Audio Features Analysis</h3>
+      <h3>Hit-or-Myth: Emotion, Audio, and Popularity in Spotify Tracks</h3>
       <p>
-        <time datetime="2026-01">[Month Year]</time> –
-        <time datetime="2026-03">[Month Year]</time>
+        <time datetime="2026-06">Jun 2026</time> · DSC 80, UC San Diego · Team project with Kitty Ming
       </p>
     </header>
     <ul>
-      <li>Collaborated with a partner to analyze Spotify audio features, such as [danceability, energy, tempo], to find [what you were investigating].</li>
-      <li>Built interactive Plotly visualizations to show [your main finding].</li>
-      <li>Published the project as a public website using Jekyll and GitHub Pages. <a href="YOUR_PROJECT_LINK" target="_blank">View project</a></li>
-    </ul>
-  </article>
-
-  <article>
-    <header>
-      <h3>Amazon Fashion Review Analysis</h3>
-      <p>
-        <time datetime="2026-04">[Month Year]</time> –
-        <time datetime="2026-06">[Month Year]</time>
-      </p>
-    </header>
-    <ul>
-      <li>Analyzed [number] reviews from the UCSD Amazon Fashion dataset to study [your question, such as rating patterns or review text].</li>
-      <li>Used [Python, pandas, etc.] to clean the data and [what analysis or model you ran].</li>
-      <li>Wrote a limitations section covering [for example, sampling bias or missing data], to show where the conclusions might not hold.</li>
+      <li>Investigated whether happier songs are more popular, using a subset of 5,000 tracks across five genres from a 114,000-track Spotify dataset.</li>
+      <li>Cleaned the data and assessed missingness in <code>tempo</code> (about 20% missing), using permutation tests to show it depends on energy but not duration.</li>
+      <li>Ran a permutation test finding no significant link between valence and popularity (r ≈ 0.009, p ≈ 0.52).</li>
+      <li>Built a Random Forest model with engineered features and tuned it with grid search, lowering RMSE from 32.38 to 23.50 and raising R² from 0.04 to 0.50.</li>
+      <li>Ran a fairness analysis comparing model error on classical vs. non-classical songs.</li>
+      <li>Published the full analysis as a Jekyll and GitHub Pages site with interactive Plotly charts. <a href="https://kittymingsln.github.io/Hit-or-Myth/" target="_blank">View project</a></li>
     </ul>
   </article>
 </section>
