@@ -3,6 +3,7 @@
   accent-color: var(--color-accent);
 }
 
+
 body {
   font: 100%/1.5 system-ui;
   max-width: 100ch;
@@ -13,6 +14,7 @@ body {
 img {
   max-width: 100%;
 }
+
 
 nav {
   display: flex;
@@ -26,18 +28,27 @@ nav a {
   color: inherit;
   text-align: center;
   padding: 0.5em;
+  border-bottom: 0.2em solid var(--link-color);
 }
 
+
+nav a:nth-child(1) { --link-color: oklch(65% 0.2 25); }   /* Home: red */
+nav a:nth-child(2) { --link-color: oklch(75% 0.17 70); }  /* Projects: orange */
+nav a:nth-child(3) { --link-color: oklch(65% 0.17 150); } /* Contact: green */
+nav a:nth-child(4) { --link-color: oklch(60% 0.17 250); } /* Resume: blue */
+nav a:nth-child(5) { --link-color: oklch(55% 0.2 300); }  /* GitHub: purple */
+
 nav a.current {
-  border-bottom: 0.4em solid oklch(85% 3% 200);
+  border-bottom-width: 0.4em;
   padding-bottom: 0.1em;
 }
 
 nav a:hover {
-  border-bottom: 0.4em solid var(--color-accent);
+  border-bottom-width: 0.4em;
   padding-bottom: 0.1em;
-  background-color: oklch(from var(--color-accent) 95% 5% h);
+  background-color: oklch(from var(--link-color) 95% 5% h);
 }
+
 
 input, textarea, button {
   font: inherit;
@@ -58,6 +69,7 @@ form label {
 form button {
   grid-column: 1 / -1;
 }
+
 
 .projects {
   display: grid;
