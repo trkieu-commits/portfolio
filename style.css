@@ -8,3 +8,11 @@ body {
 img {
   max-width: 100%;
 }
+
+nav {
+  display: flex;
+}
+
+nav a {
+  flex: 1;
+}
