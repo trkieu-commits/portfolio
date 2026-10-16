@@ -45,3 +45,37 @@ for (let p of pages) {
 
   nav.append(a);
 }
+
+// ---------- Step 4.2: add the theme dropdown ----------
+document.body.insertAdjacentHTML(
+  'afterbegin',
+  `
+  <label class="color-scheme">
+    Theme:
+    <select>
+      <option value="light dark">Automatic</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </label>`,
+);
+
+// 4.4
+const select = document.querySelector('.color-scheme select');
+
+function setColorScheme(colorScheme) {
+  document.documentElement.style.setProperty('color-scheme', colorScheme);
+  select.value = colorScheme; // keep the dropdown showing the right option
+}
+
+select.addEventListener('input', function (event) {
+  console.log('color scheme changed to', event.target.value);
+  setColorScheme(event.target.value);
+  // 4.5
+  localStorage.colorScheme = event.target.value;
+});
+
+// load the saved choice when the page opens
+if ('colorScheme' in localStorage) {
+  setColorScheme(localStorage.colorScheme);
+}
