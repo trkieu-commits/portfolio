@@ -79,3 +79,20 @@ select.addEventListener('input', function (event) {
 if ('colorScheme' in localStorage) {
   setColorScheme(localStorage.colorScheme);
 }
+
+// contact form
+const form = document.querySelector('form');
+
+form?.addEventListener('submit', function (event) {
+  event.preventDefault(); // stop the normal form submit
+
+  let data = new FormData(form);
+  let params = [];
+
+  for (let [name, value] of data) {
+    params.push(`${name}=${encodeURIComponent(value)}`);
+  }
+
+  let url = form.action + '?' + params.join('&');
+  location.href = url; // opens your email app
+});
