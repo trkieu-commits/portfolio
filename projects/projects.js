@@ -9,3 +9,7 @@ const projectsContainer = document.querySelector('.projects');
 
 // Show the projects, using <h2> for the titles
 renderProjects(projects, projectsContainer, 'h2');
+
+// show how many projects there are in the title
+const projectsTitle = document.querySelector('.projects-title');
+projectsTitle.textContent = `${projects.length} Projects`;
