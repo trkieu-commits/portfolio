@@ -146,3 +146,24 @@ h1 {
   border-radius: 1em;
   padding: 0.2em 0.8em;
 }
+
+
+#profile-stats dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  /* 4 equal columns */
+  text-align: center;
+}
+
+#profile-stats dt {
+  grid-row: 1;          /* all labels on the first row */
+  font-size: 80%;
+  text-transform: uppercase;
+  color: gray;
+}
+
+#profile-stats dd {
+  grid-row: 2;          /* all numbers on the second row */
+  margin: 0;
+  font-size: 200%;
+  font-weight: bold;
+}
