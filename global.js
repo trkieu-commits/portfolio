@@ -116,3 +116,24 @@ export async function fetchJSON(url) {
     console.error('Error fetching or parsing JSON data:', error);
   }
 }
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  // 1. Clear the container so projects aren't added twice
+  containerElement.innerHTML = '';
+
+  // 2. Go through each project in the list
+  for (let project of projects) {
+    // 3. Make a new <article> for this project
+    const article = document.createElement('article');
+
+    // 4. Fill it with the project's info
+    article.innerHTML = `
+      <${headingLevel}>${project.title}</${headingLevel}>
+      <img src="${project.image}" alt="${project.title}">
+      <p>${project.description}</p>
+    `;
+
+    // 5. Add the article to the page
+    containerElement.appendChild(article);
+  }
+}
