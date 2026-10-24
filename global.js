@@ -46,7 +46,7 @@ for (let p of pages) {
   nav.append(a);
 }
 
-// ---------- Step 4.2: add the theme dropdown ----------
+// 
 document.body.insertAdjacentHTML(
   'afterbegin',
   `
@@ -60,7 +60,7 @@ document.body.insertAdjacentHTML(
   </label>`,
 );
 
-// 4.4
+// 
 const select = document.querySelector('.color-scheme select');
 
 function setColorScheme(colorScheme) {
@@ -71,7 +71,7 @@ function setColorScheme(colorScheme) {
 select.addEventListener('input', function (event) {
   console.log('color scheme changed to', event.target.value);
   setColorScheme(event.target.value);
-  // 4.5
+  // 
   localStorage.colorScheme = event.target.value;
 });
 
@@ -96,3 +96,23 @@ form?.addEventListener('submit', function (event) {
   let url = form.action + '?' + params.join('&');
   location.href = url; // opens your email app
 });
+
+// Lab 4
+export async function fetchJSON(url) {
+  try {
+    // Fetch the JSON file from the given URL
+    const response = await fetch(url);
+    console.log(response);
+
+    // Stop if the file couldn't be loaded
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+
+    // Turn the text into JavaScript data
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+  }
+}
