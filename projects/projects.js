@@ -93,6 +93,9 @@ function renderPieChart(projectsGiven) {
       .on('click', () => toggleWedge(i, label));
   });
 
+  // move the selected slice to the front so its outline isn't covered
+  svg.select('path.selected').raise();
+
   // draw the legend 
   data.forEach((d, i) => {
     legend
