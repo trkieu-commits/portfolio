@@ -168,6 +168,7 @@ h1 {
   font-weight: bold;
 }
 
+
 /* Lab 5 */
 
 .project-year {
@@ -221,6 +222,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 0.4em;
+  padding: 0.2em 0.4em;
   cursor: pointer;
 }
 
@@ -232,13 +234,28 @@ h1 {
   border-radius: 50%;
 }
 
-/* selected wedge + legend entry */
+/* selected wedge + legend entry: yellow */
 .selected {
-  --color: oklch(60% 45% 0) !important;
+  --color: oklch(85% 0.17 95) !important;
 
   &:is(path) {
     fill: var(--color);
   }
+}
+
+/* outline around the selected pie slice */
+#projects-pie-plot path.selected {
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+/* box around the selected legend year */
+.legend-item.selected {
+  font-weight: bold;
+  background-color: color-mix(in oklch, var(--color) 30%, transparent);
+  outline: 2px solid var(--color);
+  border-radius: 0.4em;
 }
 
 /* search bar */
