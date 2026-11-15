@@ -1,4 +1,11 @@
 [
+    {
+    "title": "Bikewatching",
+    "year": "2026",
+    "image": "https://trkieu-commits.github.io/portfolio/Screenshot 2026-11-14 205856.png",
+    "description": "An interactive Mapbox + D3 map of Boston and Cambridge Bluebikes traffic (March 2024). Circle size shows station traffic, color shows departures vs. arrivals, and a time slider filters trips by time of day.",
+    "url": "https://trkieu-commits.github.io/bikewatching/"
+  },
   {
     "title": "Hit-or-Myth: Happy Songs, Hit Songs?",
     "year": "2026",
