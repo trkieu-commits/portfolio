@@ -12,6 +12,13 @@
     <h1>Meta</h1>
     <p>Stats about the code behind this website, computed from its git history.</p>
 
+    <div class="slider-row">
+      <label>
+        Show commits until:
+        <input type="range" id="commit-progress" min="0" max="100" />
+        <time id="commit-time"></time>
+      </label>
+    </div>
     <h2>Summary</h2>
     <div id="stats"></div>
 
@@ -29,7 +36,7 @@
       <dd id="commit-date"></dd>
 
       <dt>Time</dt>
-      <dd id="commit-time"></dd>
+      <dd id="commit-hour"></dd>
 
       <dt>Author</dt>
       <dd id="commit-author"></dd>
