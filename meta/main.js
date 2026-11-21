@@ -1,4 +1,5 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 const REPO_URL = 'https://github.com/trkieu-commits/portfolio';
 
@@ -361,6 +362,29 @@ function updateFileDisplay(filteredCommits) {
     .style('--color', (d) => colors(d.type));
 }
 
+/* one story paragraph per commit */
+function renderCommitStory(commits) {
+  d3.select('#scatter-story')
+    .selectAll('.step')
+    .data(commits)
+    .join('div')
+    .attr('class', 'step')
+    .html((d, i) => {
+      const fileCount = d3.rollups(d.lines, (D) => D.length, (d) => d.file).length;
+      const when = d.datetime.toLocaleString('en', {
+        dateStyle: 'full',
+        timeStyle: 'short',
+      });
+      const what = i === 0 ? 'my very first commit to this portfolio' : 'another commit';
+      return `
+        <p>On ${when}, I made
+        <a href="${d.url}" target="_blank">${what}</a>.
+        It edited ${d.totalLines} lines across ${fileCount}
+        file${fileCount === 1 ? '' : 's'}.</p>
+      `;
+    });
+}
+
 /* Run everything */
 const data = await loadData();
 commits = processCommits(data);
@@ -401,6 +425,21 @@ function onTimeSliderChange() {
 }
 
 renderScatterPlot(data, commits);
+renderCommitStory(commits);
 
 slider.addEventListener('input', onTimeSliderChange);
 onTimeSliderChange();
+
+/* update the chart  */
+function onStepEnter(response) {
+  const commit = response.element.__data__;
+  updateForTime(commit.datetime);
+}
+
+const scroller = scrollama();
+scroller
+  .setup({
+    container: '#scrolly-1',
+    step: '#scrolly-1 .step',
+  })
+  .onStepEnter(onStepEnter);
