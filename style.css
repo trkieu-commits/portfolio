@@ -341,9 +341,13 @@ dl.info[hidden]:not(:hover, :focus-within) {
 }
 
 circle {
-  transition: 200ms;
+  transition: all 200ms, r calc(var(--r) * 100ms);
   transform-origin: center;
   transform-box: fill-box;
+
+  @starting-style {
+    r: 0;
+  }
 }
 
 circle:hover {
@@ -366,4 +370,27 @@ circle:hover {
 
 circle.selected {
   fill: #ff6b6b;
+}
+
+
+/* Lab 8 */
+
+.slider-row {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.slider-row label {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+.slider-row input {
+  flex: 1;
+}
+
+.slider-row time {
+  margin-left: auto;
 }
