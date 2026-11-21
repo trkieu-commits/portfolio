@@ -7,6 +7,7 @@ let yScale;
 let commits = [];
 let filteredCommits = [];
 let usableArea;
+const colors = d3.scaleOrdinal(d3.schemeTableau10);
 
 
 async function loadData() {
@@ -328,6 +329,38 @@ function updateScatterPlot(data, commits) {
     });
 }
 
+/* one dot per line of code */
+function updateFileDisplay(filteredCommits) {
+  const lines = filteredCommits.flatMap((d) => d.lines);
+  const files = d3
+    .groups(lines, (d) => d.file)
+    .map(([name, lines]) => ({ name, lines }))
+    .sort((a, b) => b.lines.length - a.lines.length);
+
+  const filesContainer = d3
+    .select('#files')
+    .selectAll('div')
+    .data(files, (d) => d.name)
+    .join((enter) =>
+      enter.append('div').call((div) => {
+        div.append('dt');
+        div.append('dd');
+      }),
+    );
+
+  filesContainer
+    .select('dt')
+    .html((d) => `<code>${d.name}</code><small>${d.lines.length} lines</small>`);
+
+  filesContainer
+    .select('dd')
+    .selectAll('div')
+    .data((d) => d.lines)
+    .join('div')
+    .attr('class', 'loc')
+    .style('--color', (d) => colors(d.type));
+}
+
 /* Run everything */
 const data = await loadData();
 commits = processCommits(data);
@@ -359,6 +392,7 @@ function updateForTime(maxTime) {
 
   updateScatterPlot(data, filteredCommits);
   renderCommitInfo(filteredLines, filteredCommits);
+  updateFileDisplay(filteredCommits);
 }
 
 function onTimeSliderChange() {
